@@ -25,11 +25,9 @@ const Resort: React.FC = () => {
         <img src={newData && newData.imageUrl} alt="" />
       </div>
       <div className="text">
-        {/* <p className="title">{dataArticle && dataArticle.title}</p>
-        <p className="description">{dataArticle && dataArticle.description}</p> */}
+      
         <div className="footer">
-          {/* <p>دسته بندی خبر : {dataArticle && dataArticle.category.name}</p>
-          <p>نویسنده : {dataArticle && dataArticle.user.full_name}</p> */}
+          
         </div>
       </div>
     </Container>
