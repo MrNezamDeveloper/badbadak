@@ -30,7 +30,7 @@ const Resorts: React.FC = () => {
   const [filteredData, setFilteredData] = useState<IData[]>(data);
   const [currentData, setCurrentData] = useState<IData[]>();
   const [filterValue, setFilterValue] = useState<number[]>([1, 3000]);
-  const [sortByPrice, setSortByPrice] = useState("");
+  const [sortByPrice, setSortByPrice] = useState("none");
 
   useEffect(() => {
     const numberOfOerPage = 20;
@@ -74,24 +74,32 @@ const Resorts: React.FC = () => {
 
   const handleFilterSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const filteredDataBetween = data?.filter(
-      (item) =>
-        +item.price.split("$", 1) > filterValue[0] &&
-        +item.price.split("$", 1) < filterValue[1],
-    );
-    setFilteredData(filteredDataBetween!);
-    console.log(sortByPrice);
-
     if (sortByPrice === "least") {
       const sortLessData = filteredData.sort((a, b) => {
         return +a.price.split("$", 1) - +b.price.split("$", 1);
       });
-      setFilteredData(sortLessData);
+      const filteredDataBetween = sortLessData?.filter(
+        (item) =>
+          +item.price.split("$", 1) > filterValue[0] &&
+          +item.price.split("$", 1) < filterValue[1],
+      );
+      setFilteredData(filteredDataBetween!);
     }
     if (sortByPrice === "none") {
-      console.log(filteredData);
-      setFilteredData(filteredData);
+      const filteredDataBetween = data?.filter(
+        (item) =>
+          +item.price.split("$", 1) > filterValue[0] &&
+          +item.price.split("$", 1) < filterValue[1],
+      );
+      setFilteredData(filteredDataBetween!);
     }
+    // const filteredDataBetween = data?.filter(
+    //   (item) =>
+    //     +item.price.split("$", 1) > filterValue[0] &&
+    //     +item.price.split("$", 1) < filterValue[1],
+    // );
+    // setFilteredData(filteredDataBetween!);
+    // console.log(sortByPrice);
   };
   const handleChangeSort = (event: SelectChangeEvent) => {
     setSortByPrice(event.target.value);
