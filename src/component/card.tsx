@@ -35,7 +35,6 @@ const Card: React.FC<CardProps> = ({
       <h3 className="title">{title}</h3>
       <div className="time">
         <p className="minute">{price}</p>
-        <p>$</p>
       </div>
       <span className="desc">{description}</span>
       <div className="more-conainer">
